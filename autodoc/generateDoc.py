@@ -13,7 +13,7 @@ def generateDocumentation(prompt: str, apikey: str, files: str):
     }
     
     response = requests.post(
-        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key={apikey}",
+        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={apikey}",
         headers={'Content-Type': "application/json"},
         data=json.dumps(payload)
     )
