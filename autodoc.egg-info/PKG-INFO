@@ -1,0 +1,23 @@
+Metadata-Version: 2.2
+Name: autodoc
+Version: 0.1.0
+Summary: A tool to automatically generate documentation for projects using Gemini API
+Author: Your Name
+Author-email: your.email@example.com
+Keywords: documentation,generator,gemini,api
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Requires-Dist: requests>=2.25.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

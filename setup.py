@@ -21,7 +21,7 @@ def prompt_for_api_key():
         print("2. Creating a file at ~/.autodoc/config with content: GEMINI_API_KEY=your_key_here")
 
 # Only prompt during install command
-if "install" in sys.argv:
+if "install" in sys.argv or "develop" in sys.argv:
     prompt_for_api_key()
 
 setup(
