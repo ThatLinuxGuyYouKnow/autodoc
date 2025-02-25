@@ -53,8 +53,8 @@ setup(
     install_requires=[
         'requests>=2.25.0',
     ],
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Alabi Ayobami",
+    author_email="arocket04@gmail.com",
     description="A tool to automatically generate documentation for projects using Gemini API",
     keywords="documentation, generator, gemini, api",
     classifiers=[
