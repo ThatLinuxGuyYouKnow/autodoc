@@ -1,28 +1,42 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Command
 import os
 import sys
 from pathlib import Path
 
-def prompt_for_api_key():
-    api_key = input("Enter your Gemini API key (press Enter to skip and configure later): ").strip()
-    if api_key:
-        # Create config directory if it doesn't exist
-        config_dir = Path.home() / ".autodoc"
-        os.makedirs(config_dir, exist_ok=True)
+class ConfigCommand(Command):
+    description = "Configure API key for autodoc"
+    user_options = []
+    
+    def initialize_options(self):
+        pass
         
-        # Write API key to config file
-        with open(config_dir / "config", "w") as f:
-            f.write(f"GEMINI_API_KEY={api_key}\n")
+    def finalize_options(self):
+        pass
         
-        print(f"API key saved to {config_dir}/config")
-    else:
-        print("\nYou can set your API key later by:")
-        print("1. Setting the GEMINI_API_KEY environment variable, or")
-        print("2. Creating a file at ~/.autodoc/config with content: GEMINI_API_KEY=your_key_here")
+    def run(self):
+        api_key = input("Enter your Gemini API key: ").strip()
+        if api_key:
+            config_dir = Path.home() / ".autodoc"
+            os.makedirs(config_dir, exist_ok=True)
+            
+            with open(config_dir / "config", "w") as f:
+                f.write(f"GEMINI_API_KEY={api_key}\n")
+            
+            print(f"API key saved to {config_dir}/config")
+        else:
+            print("No API key provided.")
 
-# Only prompt during install command
+# Create a post-install script
+def _post_install():
+    print("\n" + "=" * 60)
+    print("To configure autodoc, run: pip install -e . config")
+    print("Or configure later with: python -m autodoc.config")
+    print("=" * 60 + "\n")
+
 if "install" in sys.argv or "develop" in sys.argv:
-    prompt_for_api_key()
+    # Add post-install message
+    sys.argv.append("--no-user-cfg")  # This is a workaround to ensure our callback runs
+    _post_install()
 
 setup(
     name="autodoc",
@@ -32,6 +46,9 @@ setup(
         'console_scripts': [
             'autodoc=autodoc.main:main',
         ],
+    },
+    cmdclass={
+        'config': ConfigCommand,
     },
     install_requires=[
         'requests>=2.25.0',
