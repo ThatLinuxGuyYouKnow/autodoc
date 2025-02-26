@@ -24,6 +24,10 @@ classifiers = [
 
 [project.scripts]
 autodoc = "autodoc.main:main"
+autodoc-config = "autodoc.config:configure_api_key"
 
 [tool.setuptools]
 packages = ["autodoc"]
+
+ 
+
