@@ -3,3 +3,7 @@ __pycache__/
 
 # Ignore .egg-info directories
 *.egg-info/
+
+autodoc/.autodoc
+
+.*
