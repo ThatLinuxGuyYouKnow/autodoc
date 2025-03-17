@@ -21,8 +21,8 @@ def get_api_key():
 
 def get_files_content(directory="."):
     """Get content of relevant files in the project."""
-    ignored_dirs = {".git", "node_modules", "venv", "env", "build", "dist", "__pycache__"}
-    ignored_extensions = {".pyc", ".pyo", ".pyd", ".so", ".dll", ".class", ".exe", ".obj", ".o"}
+    ignored_dirs = {".git", "node_modules", "venv", "env", "build", "dist", "__pycache__","android","build","macos","ios","linux","web","test","windows"}
+    ignored_extensions = {".pyc", ".pyo", ".pyd", ".so", ".dll", ".class", ".exe", ".obj", ".o",".h5",".csv"}
     
     all_content = ""
     
