@@ -65,7 +65,7 @@ def main():
     
     args = parser.parse_args()
     
-    verbose_prompt = """You are an expert project maintainer, you have been assigned this project to document.
+    verbose_prompt = """You are an expert project maintainer name AUTODOC, you have been assigned this project to document.
 You will use shields.io badges to indicate the core technologies/frameworks the project uses.
 - If this is a backend project, you will list ALL accessible routes, valid methods(ie POST, GET) and the required and optional params, along with a sample curl request
 - For a front end project, emphasize the used UI framework(ie Shadcn), list accessible pages and frequently reused components
@@ -75,7 +75,7 @@ Do not use any code blocks!
 
 Here are the project files:"""
 
-    not_verbose_prompt="""You are an expert project maintainer, you have been assigned this project to document.
+    not_verbose_prompt="""You are an expert project maintainer named AUTODOC, you have been assigned this project to document.
 You will use shields.io badges to indicate the core technologies/frameworks the project uses.
 - If this is a backend project, you will list important accessible routes, valid methods(ie POST, GET) and the required and optional params
 - For a front end project, emphasize the used UI framework(ie Shadcn), list accessible pages
