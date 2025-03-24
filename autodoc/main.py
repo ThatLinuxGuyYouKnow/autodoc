@@ -91,7 +91,7 @@ Here are the project files:"""
         sys.exit(1)
     
     files_content = get_files_content()
-    if args.text:
+    if args.guidance:
         print(f"Genrating documentation with provided guidance to{args.output}")
         documentation = generateDocumentation(prompt= not_verbose_prompt, files=files_content, apikey=api_key, extra_prompt= args.text)
     if args.verbose:
