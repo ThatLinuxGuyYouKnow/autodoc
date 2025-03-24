@@ -84,6 +84,7 @@ Return ONLY the text documentation, properly formatted in markdown.
 Do not use any code blocks!
 
 Here are the project files:"""
+  
 
     api_key = get_api_key()
     if not api_key:
@@ -93,7 +94,8 @@ Here are the project files:"""
     files_content = get_files_content()
     if args.guidance:
         print(f"Genrating documentation with provided guidance to{args.output}")
-        documentation = generateDocumentation(prompt= not_verbose_prompt, files=files_content, apikey=api_key, extra_prompt= args.text)
+        PROMPT = not_verbose_prompt + 'Additional Guidance to consider' + args.guidance + 'now heres project files :' +  files_content
+        documentation = generateDocumentation(prompt=PROMPT, files=files_content, apikey=api_key)
     if args.verbose:
         print(f"Generating verbose documentation to {args.output}")
         documentation = generateDocumentation(prompt=verbose_prompt, files=files_content, apikey=api_key)

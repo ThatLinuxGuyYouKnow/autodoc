@@ -1,7 +1,7 @@
 import requests
 import json
 
-def generateDocumentation(prompt: str, apikey: str, files: str, extra_prompt: str):
+def generateDocumentation(prompt: str, apikey: str, files: str):
     payload = {
         "contents": [
             {
