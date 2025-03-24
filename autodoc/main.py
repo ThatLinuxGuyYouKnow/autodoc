@@ -52,6 +52,7 @@ def main():
     parser = argparse.ArgumentParser(description="Automatically generate documentation for backend projects")
     parser.add_argument("-v", "--verbose", action="store_true", help="Generate verbose README with all details")
     parser.add_argument("output", nargs="?", default="README.md", help="Output file path (default: README.md)")
+    parser.add_argument('text', type=str, nargs='+', help="Additional guidance for the tool" )
     
     args = parser.parse_args()
     
