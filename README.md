@@ -1,72 +1,55 @@
-# autodoc
+# autodoc: Automated Documentation Generator
 
 [![Python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Gemini API](https://img.shields.io/badge/Gemini-API-brightgreen)](https://generativelanguage.googleapis.com/v1beta)
-[![Requests](https://img.shields.io/badge/requests-2.25.0+-orange)](https://pypi.org/project/requests/)
+[![Requests](https://img.shields.io/badge/requests-2.25.0+-brightgreen.svg)](https://requests.readthedocs.io/en/latest/)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-API-orange.svg)](https://developers.google.com/generativelanguage/)
 
-## Overview
 
-`autodoc` is a command-line tool that automatically generates documentation for projects using the Google Gemini API. It analyzes project files and uses the Gemini API to create a Markdown README file.
-
-## Installation
-
-`pip install autodoc`
-
-After installation, configure your Gemini API key using:
-
-`pip install -e . config`
-
-or manually:
-
-`python -m autodoc.config`
+This project uses the Gemini API to automatically generate documentation for various types of projects.  It intelligently determines the project type (backend, frontend, mobile) and formats the documentation accordingly.
 
 
 ## Usage
 
-`autodoc [options] [output]`
+1. **Installation:**
+   ```bash
+   pip install -e .
+   ```
 
-**Options:**
+2. **Configuration:**
+   Configure your Gemini API key using the command:
+   ```bash
+   python -m autodoc.config
+   ```
+   Alternatively, you can set the `GEMINI_API_KEY` environment variable.
 
-- `-v`, `--verbose`: Generates verbose documentation with more details from project files.
-- `output`: Specifies the output file path. Defaults to `README.md`.
-
-## Command-line Interface
-
-The `autodoc` command provides the main functionality:
-
-- `autodoc`: Generates a standard README.md file.
-- `autodoc -v`: Generates a verbose README.md with more detailed information.
-- `autodoc -v OUTPUT.md`: Generates a verbose README in a file named OUTPUT.md.
-
-
-## Configuration
-
-The Gemini API key is required.  Set it using:
-
-1.  **Environment Variable:** Set the `GEMINI_API_KEY` environment variable.
-2.  **Configuration File:** Create `.autodoc/config` in your home directory with `GEMINI_API_KEY=YOUR_API_KEY`.  The `autodoc config` command creates this file for you.
-
-
-## How It Works
-
-`autodoc` combines file analysis and the Gemini API:
-
-1.  **File Collection:** Collects relevant file content, excluding common directories (`.git`, `node_modules`, etc.) and files (`.pyc`, `.o`, etc.).
-2.  **Prompt Generation:** Creates a prompt for the Gemini API based on collected file content and verbosity level.
-3.  **API Call:** Sends the prompt and file content to the Gemini API.
-4.  **Documentation Generation:** The Gemini API generates Markdown documentation.
-5.  **Output:** Writes the generated documentation to the specified output file.
+3. **Generating Documentation:**
+   ```bash
+   autodoc [output_file]
+   ```
+   This will generate documentation in `README.md` by default.  You can specify a different output file as shown.  For detailed documentation including all file contents add the `-v` flag :
+   ```bash
+   autodoc -v [output_file]
+   ```
+   Additional guidance for the documentation can be added with the `--guidance` flag:
+   ```bash
+   autodoc --guidance "This is a python backend" "The main function is located in main.py" [output_file]
+   ```
 
 
-## Example Usage
+##  Documentation Structure
 
-For a basic Python project, `autodoc` analyzes project files and generates `README.md`. `autodoc -v` provides more detail.
+The generated documentation will include:
 
+* **Project Overview:** A brief summary of the project's purpose and functionality.
+* **Core Technologies:**  Shields.io badges indicating the key technologies and frameworks used.
+* **Specifics based on project type:**
 
-## Contributing
+    * **Backend Projects:**  Important accessible routes, valid HTTP methods (GET, POST, etc.), required and optional parameters.  Example cURL commands demonstrating usage.
+    * **Frontend Projects:** The UI framework used, a list of accessible pages, and frequently reused components.
+    * **Mobile Apps:**  Installed packages, accessible screens, and any significant logic functions.
 
-Contributions are welcome!  Submit issues and pull requests on the project's GitHub repository.
+## Example
 
-## Fun fact, autodoc wrote its own documentation!(but the human had to add this part lol)
+The generated documentation will be a comprehensive Markdown file suitable for inclusion in a project repository.
+
 

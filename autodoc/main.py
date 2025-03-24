@@ -93,8 +93,9 @@ Here are the project files:"""
     
     files_content = get_files_content()
     if args.guidance:
-        print(f"Genrating documentation with provided guidance to{args.output}")
-        PROMPT = not_verbose_prompt + 'Additional Guidance to consider' + args.guidance + 'now heres project files :' +  files_content
+        print(f"Genrating documentation with provided guidance to {args.output}")
+        extra_guidance = ' '.join(args.guidance)
+        PROMPT = not_verbose_prompt + 'Additional Guidance to consider' + extra_guidance + 'now heres project files :' +  files_content
         documentation = generateDocumentation(prompt=PROMPT, files=files_content, apikey=api_key)
     if args.verbose:
         print(f"Generating verbose documentation to {args.output}")
