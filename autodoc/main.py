@@ -49,10 +49,19 @@ def write_to_file(content, output_path):
     print(f"Documentation written to {output_path}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Automatically generate documentation for backend projects")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Generate verbose README with all details")
-    parser.add_argument("output", nargs="?", default="README.md", help="Output file path (default: README.md)")
-    parser.add_argument('text', type=str, nargs='+', help="Additional guidance for the tool" )
+    parser = argparse.ArgumentParser(description="Automatically generate documentation")
+    
+    # Mutually exclusive group for verbose options
+    verbose_group = parser.add_mutually_exclusive_group()
+    verbose_group.add_argument("-v", "--verbose", action="store_true", help="Generate verbose README with all details")
+    
+    # Optional text arguments
+    parser.add_argument('--guidance', type=str, nargs='+', 
+                        help="Additional guidance for documentation generation")
+    
+    # Optional output file argument
+    parser.add_argument("output", nargs="?", default="README.md", 
+                        help="Output file path (default: README.md)")
     
     args = parser.parse_args()
     
@@ -82,7 +91,9 @@ Here are the project files:"""
         sys.exit(1)
     
     files_content = get_files_content()
-    
+    if args.text:
+        print(f"Genrating documentation with provided guidance to{args.output}")
+        documentation = generateDocumentation(prompt= not_verbose_prompt, files=files_content, apikey=api_key, extra_prompt= args.text)
     if args.verbose:
         print(f"Generating verbose documentation to {args.output}")
         documentation = generateDocumentation(prompt=verbose_prompt, files=files_content, apikey=api_key)
